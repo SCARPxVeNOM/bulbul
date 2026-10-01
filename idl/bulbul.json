@@ -1,0 +1,2201 @@
+{
+  "address": "5c7PXFMxkMc3kKsNHoafJb3phNhZoz6jt5qm57heRpGF",
+  "metadata": {
+    "name": "bulbul",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "bulbul: a companion that evolves only from verified on-chain commitments"
+  },
+  "instructions": [
+    {
+      "name": "attest_checkin",
+      "discriminator": [
+        158,
+        247,
+        206,
+        157,
+        140,
+        211,
+        212,
+        243
+      ],
+      "accounts": [
+        {
+          "name": "attestor",
+          "signer": true,
+          "relations": [
+            "config"
+          ]
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "commitment",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  109,
+                  109,
+                  105,
+                  116,
+                  109,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "commitment.owner",
+                "account": "Commitment"
+              },
+              {
+                "kind": "account",
+                "path": "commitment.id",
+                "account": "Commitment"
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "day_index",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "break_goal",
+      "discriminator": [
+        198,
+        247,
+        9,
+        163,
+        76,
+        59,
+        144,
+        213
+      ],
+      "accounts": [
+        {
+          "name": "owner",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "goal"
+          ]
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "profile",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  102,
+                  105,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              }
+            ]
+          }
+        },
+        {
+          "name": "goal",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  111,
+                  97,
+                  108
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              },
+              {
+                "kind": "account",
+                "path": "goal.id",
+                "account": "GoalVault"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  111,
+                  97,
+                  108,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "goal"
+              }
+            ]
+          }
+        },
+        {
+          "name": "owner_token_account",
+          "writable": true
+        },
+        {
+          "name": "usdc_mint"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "complete_goal",
+      "discriminator": [
+        140,
+        54,
+        173,
+        125,
+        210,
+        162,
+        67,
+        228
+      ],
+      "accounts": [
+        {
+          "name": "owner",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "goal"
+          ]
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "profile",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  102,
+                  105,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              }
+            ]
+          }
+        },
+        {
+          "name": "goal",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  111,
+                  97,
+                  108
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              },
+              {
+                "kind": "account",
+                "path": "goal.id",
+                "account": "GoalVault"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  111,
+                  97,
+                  108,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "goal"
+              }
+            ]
+          }
+        },
+        {
+          "name": "owner_token_account",
+          "writable": true
+        },
+        {
+          "name": "usdc_mint"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "create_commitment",
+      "discriminator": [
+        232,
+        31,
+        118,
+        65,
+        229,
+        2,
+        2,
+        170
+      ],
+      "accounts": [
+        {
+          "name": "owner",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "profile",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  102,
+                  105,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              }
+            ]
+          }
+        },
+        {
+          "name": "commitment",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  109,
+                  109,
+                  105,
+                  116,
+                  109,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              },
+              {
+                "kind": "account",
+                "path": "profile.commitments_created",
+                "account": "Profile"
+              }
+            ]
+          }
+        },
+        {
+          "name": "escrow",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  101,
+                  115,
+                  99,
+                  114,
+                  111,
+                  119
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "commitment"
+              }
+            ]
+          }
+        },
+        {
+          "name": "owner_token_account",
+          "writable": true
+        },
+        {
+          "name": "usdc_mint"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "stake",
+          "type": "u64"
+        },
+        {
+          "name": "focus_minutes",
+          "type": "u16"
+        },
+        {
+          "name": "required_checkins",
+          "type": "u8"
+        },
+        {
+          "name": "period_days",
+          "type": "u8"
+        },
+        {
+          "name": "mode",
+          "type": {
+            "defined": {
+              "name": "ForfeitMode"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "create_goal",
+      "discriminator": [
+        229,
+        63,
+        42,
+        239,
+        1,
+        226,
+        219,
+        196
+      ],
+      "accounts": [
+        {
+          "name": "owner",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "profile",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  102,
+                  105,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              }
+            ]
+          }
+        },
+        {
+          "name": "goal",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  111,
+                  97,
+                  108
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              },
+              {
+                "kind": "account",
+                "path": "profile.goals_created",
+                "account": "Profile"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  111,
+                  97,
+                  108,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "goal"
+              }
+            ]
+          }
+        },
+        {
+          "name": "usdc_mint"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "target_amount",
+          "type": "u64"
+        },
+        {
+          "name": "unlock_at",
+          "type": "i64"
+        }
+      ]
+    },
+    {
+      "name": "deposit_goal",
+      "discriminator": [
+        114,
+        73,
+        87,
+        3,
+        40,
+        210,
+        0,
+        58
+      ],
+      "accounts": [
+        {
+          "name": "owner",
+          "signer": true,
+          "relations": [
+            "goal"
+          ]
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "goal",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  111,
+                  97,
+                  108
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              },
+              {
+                "kind": "account",
+                "path": "goal.id",
+                "account": "GoalVault"
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  111,
+                  97,
+                  108,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "goal"
+              }
+            ]
+          }
+        },
+        {
+          "name": "owner_token_account",
+          "writable": true
+        },
+        {
+          "name": "usdc_mint"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "evolve_companion",
+      "discriminator": [
+        252,
+        123,
+        249,
+        57,
+        70,
+        210,
+        86,
+        177
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "profile",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  102,
+                  105,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "profile.owner",
+                "account": "Profile"
+              }
+            ]
+          }
+        },
+        {
+          "name": "asset",
+          "writable": true
+        },
+        {
+          "name": "companion_authority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  109,
+                  112,
+                  97,
+                  110,
+                  105,
+                  111,
+                  110,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "mpl_core_program",
+          "address": "CoREENxT6tW1HoK8ypY1SxRMZTcVPm7R94rH4PZNhX7d"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "init_profile",
+      "discriminator": [
+        210,
+        162,
+        212,
+        95,
+        95,
+        186,
+        89,
+        119
+      ],
+      "accounts": [
+        {
+          "name": "owner",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "profile",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  102,
+                  105,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "region",
+          "type": {
+            "array": [
+              "u8",
+              2
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "initialize_config",
+      "discriminator": [
+        208,
+        127,
+        21,
+        1,
+        194,
+        190,
+        196,
+        70
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "usdc_mint"
+        },
+        {
+          "name": "pool_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  111,
+                  111,
+                  108
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "charity_token_account"
+        },
+        {
+          "name": "program",
+          "address": "5c7PXFMxkMc3kKsNHoafJb3phNhZoz6jt5qm57heRpGF"
+        },
+        {
+          "name": "program_data"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": {
+              "name": "ConfigParams"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "mint_companion",
+      "discriminator": [
+        171,
+        10,
+        135,
+        123,
+        131,
+        75,
+        183,
+        124
+      ],
+      "accounts": [
+        {
+          "name": "owner",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "profile",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  102,
+                  105,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "owner"
+              }
+            ]
+          }
+        },
+        {
+          "name": "asset",
+          "docs": [
+            "A fresh keypair; Metaplex Core initializes it."
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "companion_authority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  109,
+                  112,
+                  97,
+                  110,
+                  105,
+                  111,
+                  110,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "mpl_core_program",
+          "address": "CoREENxT6tW1HoK8ypY1SxRMZTcVPm7R94rH4PZNhX7d"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "settle_commitment",
+      "discriminator": [
+        131,
+        217,
+        252,
+        92,
+        136,
+        78,
+        89,
+        78
+      ],
+      "accounts": [
+        {
+          "name": "settler",
+          "signer": true
+        },
+        {
+          "name": "owner",
+          "writable": true
+        },
+        {
+          "name": "config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "profile",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  102,
+                  105,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "commitment.owner",
+                "account": "Commitment"
+              }
+            ]
+          }
+        },
+        {
+          "name": "commitment",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  109,
+                  109,
+                  105,
+                  116,
+                  109,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "commitment.owner",
+                "account": "Commitment"
+              },
+              {
+                "kind": "account",
+                "path": "commitment.id",
+                "account": "Commitment"
+              }
+            ]
+          }
+        },
+        {
+          "name": "escrow",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  101,
+                  115,
+                  99,
+                  114,
+                  111,
+                  119
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "commitment"
+              }
+            ]
+          }
+        },
+        {
+          "name": "owner_token_account",
+          "writable": true
+        },
+        {
+          "name": "charity_token_account",
+          "writable": true
+        },
+        {
+          "name": "pool_vault",
+          "writable": true
+        },
+        {
+          "name": "usdc_mint"
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "update_config",
+      "discriminator": [
+        29,
+        158,
+        252,
+        191,
+        10,
+        83,
+        219,
+        99
+      ],
+      "accounts": [
+        {
+          "name": "admin",
+          "signer": true,
+          "relations": [
+            "config"
+          ]
+        },
+        {
+          "name": "config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "charity_token_account"
+        }
+      ],
+      "args": [
+        {
+          "name": "params",
+          "type": {
+            "defined": {
+              "name": "ConfigParams"
+            }
+          }
+        },
+        {
+          "name": "paused",
+          "type": "bool"
+        },
+        {
+          "name": "new_admin",
+          "type": {
+            "option": "pubkey"
+          }
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Commitment",
+      "discriminator": [
+        61,
+        112,
+        129,
+        128,
+        24,
+        147,
+        77,
+        87
+      ]
+    },
+    {
+      "name": "Config",
+      "discriminator": [
+        155,
+        12,
+        170,
+        224,
+        30,
+        250,
+        204,
+        130
+      ]
+    },
+    {
+      "name": "GoalVault",
+      "discriminator": [
+        175,
+        228,
+        196,
+        226,
+        155,
+        35,
+        89,
+        57
+      ]
+    },
+    {
+      "name": "Profile",
+      "discriminator": [
+        184,
+        101,
+        165,
+        188,
+        95,
+        63,
+        127,
+        188
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "CheckinAttested",
+      "discriminator": [
+        47,
+        232,
+        92,
+        163,
+        154,
+        240,
+        135,
+        212
+      ]
+    },
+    {
+      "name": "CommitmentCreated",
+      "discriminator": [
+        179,
+        58,
+        10,
+        188,
+        241,
+        19,
+        191,
+        229
+      ]
+    },
+    {
+      "name": "CommitmentSettled",
+      "discriminator": [
+        55,
+        253,
+        253,
+        55,
+        211,
+        151,
+        103,
+        56
+      ]
+    },
+    {
+      "name": "CompanionEvolved",
+      "discriminator": [
+        239,
+        103,
+        238,
+        102,
+        24,
+        93,
+        253,
+        136
+      ]
+    },
+    {
+      "name": "GoalBroken",
+      "discriminator": [
+        158,
+        162,
+        78,
+        8,
+        255,
+        167,
+        62,
+        110
+      ]
+    },
+    {
+      "name": "GoalCompleted",
+      "discriminator": [
+        104,
+        165,
+        29,
+        238,
+        190,
+        42,
+        208,
+        252
+      ]
+    },
+    {
+      "name": "GoalCreated",
+      "discriminator": [
+        40,
+        74,
+        205,
+        224,
+        20,
+        51,
+        92,
+        239
+      ]
+    },
+    {
+      "name": "GoalDeposited",
+      "discriminator": [
+        205,
+        74,
+        144,
+        246,
+        37,
+        254,
+        114,
+        240
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "NotUpgradeAuthority",
+      "msg": "Signer is not the program upgrade authority"
+    },
+    {
+      "code": 6001,
+      "name": "NotAdmin",
+      "msg": "Signer is not the config admin"
+    },
+    {
+      "code": 6002,
+      "name": "NotAttestor",
+      "msg": "Signer is not the configured attestor"
+    },
+    {
+      "code": 6003,
+      "name": "NotOwner",
+      "msg": "Signer does not own this account"
+    },
+    {
+      "code": 6004,
+      "name": "InvalidMintDecimals",
+      "msg": "Mint must have 6 decimals"
+    },
+    {
+      "code": 6005,
+      "name": "WrongMint",
+      "msg": "Token account has the wrong mint"
+    },
+    {
+      "code": 6006,
+      "name": "WrongTokenOwner",
+      "msg": "Token account has the wrong owner"
+    },
+    {
+      "code": 6007,
+      "name": "TooManyRegions",
+      "msg": "Too many restricted regions"
+    },
+    {
+      "code": 6008,
+      "name": "InvalidRegion",
+      "msg": "Region must be two uppercase ASCII letters"
+    },
+    {
+      "code": 6009,
+      "name": "UriTooLong",
+      "msg": "Companion URI base is too long"
+    },
+    {
+      "code": 6010,
+      "name": "Paused",
+      "msg": "New commitments and goals are paused"
+    },
+    {
+      "code": 6011,
+      "name": "InvalidGoalName",
+      "msg": "Goal name must be 1-32 bytes"
+    },
+    {
+      "code": 6012,
+      "name": "AmountTooSmall",
+      "msg": "Amount is below the minimum"
+    },
+    {
+      "code": 6013,
+      "name": "InvalidUnlockTime",
+      "msg": "Unlock time must be 7-365 days from now"
+    },
+    {
+      "code": 6014,
+      "name": "GoalTargetNotReached",
+      "msg": "Goal target has not been reached"
+    },
+    {
+      "code": 6015,
+      "name": "GoalStillLocked",
+      "msg": "Goal is still locked"
+    },
+    {
+      "code": 6016,
+      "name": "InvalidPeriod",
+      "msg": "Period must be 1-64 days"
+    },
+    {
+      "code": 6017,
+      "name": "InvalidRequiredCheckins",
+      "msg": "Required check-ins must be between 1 and the period length"
+    },
+    {
+      "code": 6018,
+      "name": "InvalidFocusMinutes",
+      "msg": "Focus minutes must be between 5 and 720"
+    },
+    {
+      "code": 6019,
+      "name": "ModeNotAllowedInRegion",
+      "msg": "Pool mode is not available in your region; choose Soft or Charity"
+    },
+    {
+      "code": 6020,
+      "name": "DeadlinePassed",
+      "msg": "Commitment deadline has passed"
+    },
+    {
+      "code": 6021,
+      "name": "DayOutOfRange",
+      "msg": "Day index is outside the commitment period"
+    },
+    {
+      "code": 6022,
+      "name": "FutureDay",
+      "msg": "Cannot check in for a future day"
+    },
+    {
+      "code": 6023,
+      "name": "AlreadyCheckedIn",
+      "msg": "Already checked in for this day"
+    },
+    {
+      "code": 6024,
+      "name": "NotYetSettleable",
+      "msg": "Commitment can only be settled after the deadline unless it has already succeeded"
+    },
+    {
+      "code": 6025,
+      "name": "CompanionAlreadyMinted",
+      "msg": "Companion already minted"
+    },
+    {
+      "code": 6026,
+      "name": "CompanionNotMinted",
+      "msg": "Companion has not been minted"
+    },
+    {
+      "code": 6027,
+      "name": "WrongCompanion",
+      "msg": "Asset is not this profile's companion"
+    },
+    {
+      "code": 6028,
+      "name": "MathOverflow",
+      "msg": "Arithmetic overflow"
+    }
+  ],
+  "types": [
+    {
+      "name": "CheckinAttested",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "commitment",
+            "type": "pubkey"
+          },
+          {
+            "name": "day_index",
+            "type": "u8"
+          },
+          {
+            "name": "checkins",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Commitment",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "id",
+            "type": "u32"
+          },
+          {
+            "name": "stake",
+            "type": "u64"
+          },
+          {
+            "name": "focus_minutes",
+            "docs": [
+              "Continuous focus required for a day to count. Public so the attestor's rule is verifiable."
+            ],
+            "type": "u16"
+          },
+          {
+            "name": "required_checkins",
+            "type": "u8"
+          },
+          {
+            "name": "period_days",
+            "type": "u8"
+          },
+          {
+            "name": "checkins",
+            "type": "u8"
+          },
+          {
+            "name": "checkin_bitmap",
+            "type": "u64"
+          },
+          {
+            "name": "mode",
+            "type": {
+              "defined": {
+                "name": "ForfeitMode"
+              }
+            }
+          },
+          {
+            "name": "created_at",
+            "type": "i64"
+          },
+          {
+            "name": "deadline",
+            "type": "i64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "escrow_bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "CommitmentCreated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "commitment",
+            "type": "pubkey"
+          },
+          {
+            "name": "stake",
+            "type": "u64"
+          },
+          {
+            "name": "focus_minutes",
+            "type": "u16"
+          },
+          {
+            "name": "required_checkins",
+            "type": "u8"
+          },
+          {
+            "name": "period_days",
+            "type": "u8"
+          },
+          {
+            "name": "mode",
+            "type": {
+              "defined": {
+                "name": "ForfeitMode"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "CommitmentSettled",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "commitment",
+            "type": "pubkey"
+          },
+          {
+            "name": "succeeded",
+            "type": "bool"
+          },
+          {
+            "name": "mode",
+            "type": {
+              "defined": {
+                "name": "ForfeitMode"
+              }
+            }
+          },
+          {
+            "name": "stake",
+            "type": "u64"
+          },
+          {
+            "name": "bonus",
+            "type": "u64"
+          },
+          {
+            "name": "xp_gained",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "CompanionEvolved",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "asset",
+            "type": "pubkey"
+          },
+          {
+            "name": "from",
+            "type": {
+              "defined": {
+                "name": "Stage"
+              }
+            }
+          },
+          {
+            "name": "to",
+            "type": {
+              "defined": {
+                "name": "Stage"
+              }
+            }
+          },
+          {
+            "name": "xp",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Config",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "admin",
+            "type": "pubkey"
+          },
+          {
+            "name": "attestor",
+            "type": "pubkey"
+          },
+          {
+            "name": "usdc_mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "charity_token_account",
+            "type": "pubkey"
+          },
+          {
+            "name": "pool_vault",
+            "type": "pubkey"
+          },
+          {
+            "name": "restricted_regions",
+            "type": {
+              "vec": {
+                "array": [
+                  "u8",
+                  2
+                ]
+              }
+            }
+          },
+          {
+            "name": "companion_uri_base",
+            "type": "string"
+          },
+          {
+            "name": "paused",
+            "type": "bool"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "pool_bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ConfigParams",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "attestor",
+            "type": "pubkey"
+          },
+          {
+            "name": "restricted_regions",
+            "type": {
+              "vec": {
+                "array": [
+                  "u8",
+                  2
+                ]
+              }
+            }
+          },
+          {
+            "name": "companion_uri_base",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ForfeitMode",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Soft"
+          },
+          {
+            "name": "Charity"
+          },
+          {
+            "name": "Pool"
+          }
+        ]
+      }
+    },
+    {
+      "name": "GoalBroken",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "goal",
+            "type": "pubkey"
+          },
+          {
+            "name": "returned",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "GoalCompleted",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "goal",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "xp_gained",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "GoalCreated",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "goal",
+            "type": "pubkey"
+          },
+          {
+            "name": "target_amount",
+            "type": "u64"
+          },
+          {
+            "name": "unlock_at",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "GoalDeposited",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "goal",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          },
+          {
+            "name": "deposited",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "GoalVault",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "id",
+            "type": "u32"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "target_amount",
+            "type": "u64"
+          },
+          {
+            "name": "deposited",
+            "type": "u64"
+          },
+          {
+            "name": "created_at",
+            "type": "i64"
+          },
+          {
+            "name": "unlock_at",
+            "type": "i64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "vault_bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Profile",
+      "docs": [
+        "Public, on-chain reputation. Other apps can read it directly."
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "region",
+            "type": {
+              "array": [
+                "u8",
+                2
+              ]
+            }
+          },
+          {
+            "name": "xp",
+            "type": "u64"
+          },
+          {
+            "name": "verified_saved_total",
+            "type": "u64"
+          },
+          {
+            "name": "goals_created",
+            "type": "u32"
+          },
+          {
+            "name": "goals_completed",
+            "type": "u32"
+          },
+          {
+            "name": "goals_broken",
+            "type": "u32"
+          },
+          {
+            "name": "commitments_created",
+            "type": "u32"
+          },
+          {
+            "name": "commitments_succeeded",
+            "type": "u32"
+          },
+          {
+            "name": "commitments_failed",
+            "type": "u32"
+          },
+          {
+            "name": "companion",
+            "type": "pubkey"
+          },
+          {
+            "name": "companion_stage",
+            "docs": [
+              "Stage last written to the companion asset."
+            ],
+            "type": {
+              "defined": {
+                "name": "Stage"
+              }
+            }
+          },
+          {
+            "name": "created_at",
+            "type": "i64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Stage",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Curious"
+          },
+          {
+            "name": "Focused"
+          },
+          {
+            "name": "Evolving"
+          },
+          {
+            "name": "Legendary"
+          }
+        ]
+      }
+    }
+  ],
+  "constants": [
+    {
+      "name": "COMMITMENT_SEED",
+      "type": "bytes",
+      "value": "[99, 111, 109, 109, 105, 116, 109, 101, 110, 116]"
+    },
+    {
+      "name": "COMPANION_AUTH_SEED",
+      "type": "bytes",
+      "value": "[99, 111, 109, 112, 97, 110, 105, 111, 110, 95, 97, 117, 116, 104]"
+    },
+    {
+      "name": "CONFIG_SEED",
+      "type": "bytes",
+      "value": "[99, 111, 110, 102, 105, 103]"
+    },
+    {
+      "name": "ESCROW_SEED",
+      "type": "bytes",
+      "value": "[101, 115, 99, 114, 111, 119]"
+    },
+    {
+      "name": "GOAL_SEED",
+      "type": "bytes",
+      "value": "[103, 111, 97, 108]"
+    },
+    {
+      "name": "GOAL_VAULT_SEED",
+      "type": "bytes",
+      "value": "[103, 111, 97, 108, 95, 118, 97, 117, 108, 116]"
+    },
+    {
+      "name": "POOL_SEED",
+      "type": "bytes",
+      "value": "[112, 111, 111, 108]"
+    },
+    {
+      "name": "PROFILE_SEED",
+      "type": "bytes",
+      "value": "[112, 114, 111, 102, 105, 108, 101]"
+    }
+  ]
+}

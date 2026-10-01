@@ -1,0 +1,24 @@
+.DS_Store
+node_modules/
+target/
+.anchor/
+test-ledger/
+dist/
+.expo/
+android/
+ios/
+
+.env
+.env.*
+!.env.example
+*-keypair.json
+keys/
+*.pem
+
+.localnet/
+server/data/
+server/.env.localnet
+
+# Local assistant config
+CLAUDE.md
+.claude/
