@@ -51,7 +51,11 @@ export default function Focus() {
                     <ProgressBar value={pct} />
                     <Text style={type.small}>
                       {formatUsdc(big(account.stake))} USDC staked · {MODE_COPY[s.mode].title} ·{" "}
-                      {s.state === "active" ? `${s.daysLeft} day${s.daysLeft === 1 ? "" : "s"} left` : "finished"}
+                      {s.state === "active"
+                        ? `${s.daysLeft} day${s.daysLeft === 1 ? "" : "s"} left`
+                        : s.state === "succeeded"
+                          ? "kept ✓"
+                          : "missed"}
                     </Text>
                   </View>
                 </Pressable>

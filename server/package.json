@@ -13,7 +13,8 @@
     "localnet": "tsx --env-file=.env.localnet src/index.ts",
     "bootstrap": "tsx scripts/bootstrap.ts",
     "faucet": "tsx scripts/faucet.ts",
-    "inspect": "tsx scripts/inspect.ts"
+    "inspect": "tsx scripts/inspect.ts",
+    "devnet": "tsx --env-file=.env.devnet src/index.ts"
   },
   "dependencies": {
     "@anchor-lang/core": "^1.2.0",

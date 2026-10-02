@@ -19,6 +19,4 @@ keys/
 server/data/
 server/.env.localnet
 
-# Local assistant config
-CLAUDE.md
-.claude/
+server/.env.devnet

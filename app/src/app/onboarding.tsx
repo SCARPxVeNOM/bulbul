@@ -2,9 +2,9 @@ import { Ionicons } from "@expo/vector-icons";
 import { getLocales } from "expo-localization";
 import { PublicKey } from "@solana/web3.js";
 import { Redirect, router } from "expo-router";
-import { useMemo, useState } from "react";
-import { FlatList, Pressable, Text, View } from "react-native";
-import { Banner, Button, Card, ErrorState, Loading, Screen } from "@/components/ui";
+import { useEffect, useMemo, useState } from "react";
+import { BackHandler, FlatList, Pressable, Text, View } from "react-native";
+import { Banner, Button, Card, ErrorState, Header, Loading, Screen } from "@/components/ui";
 import { useChainAction, useChainConfig, useProfile } from "@/hooks/useBulbul";
 import { REGIONS, regionName } from "@/lib/regions";
 import { colors, radius, space, type } from "@/theme";
@@ -26,6 +26,16 @@ export default function Onboarding() {
     const ixs = needsProfile ? [...(await a.initProfile(region)), ...companion.ixs] : companion.ixs;
     return { ixs, signers: companion.signers };
   });
+
+  // Android back closes the picker instead of leaving onboarding.
+  useEffect(() => {
+    if (!picking) return;
+    const sub = BackHandler.addEventListener("hardwareBackPress", () => {
+      setPicking(false);
+      return true;
+    });
+    return () => sub.remove();
+  }, [picking]);
 
   const restricted = useMemo(() => config.data?.restrictedRegions.includes(region) ?? false, [config.data, region]);
 
@@ -56,7 +66,7 @@ export default function Onboarding() {
   if (picking) {
     return (
       <Screen scroll={false}>
-        <Text style={[type.title, { paddingVertical: space.lg }]}>Where do you live?</Text>
+        <Header title="Where do you live?" onBack={() => setPicking(false)} />
         <FlatList
           data={REGIONS}
           keyExtractor={(r) => r.code}
